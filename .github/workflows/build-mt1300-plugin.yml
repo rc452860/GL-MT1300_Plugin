@@ -23,7 +23,8 @@ on:
 env:
   REPO_OP: https://github.com/gl-inet/openwrt.git
   REPO_LEDE: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: openwrt-19.07.8
+  REPO_OP_BRANCH: openwrt-19.07.8
+  REPO_LEDE_TAG: 20200915
   FEEDS_CONF: feeds.conf.default
   PATCH_PATH: patch
   CONFIG_FILE: .config
@@ -60,10 +61,12 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_OP -b $REPO_BRANCH openwrt
+        git clone $REPO_OP -b $REPO_OP_BRANCH openwrt
         git clone $REPO_LEDE -b master lede
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         ln -sf /workdir/lede $GITHUB_WORKSPACE/lede
+        $GITHUB_WORKSPACE/lede
+        checkout $REPO_LEDE_TAG
         
     - name: Update and install LEDE feeds
       run: cd /workdir/lede && ./scripts/feeds update -a && ./scripts/feeds install -a
