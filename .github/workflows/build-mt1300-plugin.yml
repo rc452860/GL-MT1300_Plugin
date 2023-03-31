@@ -66,7 +66,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         ln -sf /workdir/lede $GITHUB_WORKSPACE/lede
         cd $GITHUB_WORKSPACE/lede
-        checkout $REPO_LEDE_TAG
+        git checkout $REPO_LEDE_TAG
         
     - name: Update and install LEDE feeds
       run: cd /workdir/lede && ./scripts/feeds update -a && ./scripts/feeds install -a
