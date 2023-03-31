@@ -65,7 +65,7 @@ jobs:
         git clone $REPO_LEDE -b master lede
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         ln -sf /workdir/lede $GITHUB_WORKSPACE/lede
-        $GITHUB_WORKSPACE/lede
+        cd $GITHUB_WORKSPACE/lede
         checkout $REPO_LEDE_TAG
         
     - name: Update and install LEDE feeds
